@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>How It Works — TradMax</title>
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+
+<header class="site" id="site-header"></header>
+
+<main class="wrap">
+  <section style="padding-top:30px">
+    <div class="sec-head"><h2 data-i18n="hw_h2">How <span>TradMax</span> works</h2></div>
+    <p class="note" data-i18n="hw_intro">You shop like on any online store — we handle everything on the China side: buying from the factories, quality control, export paperwork and shipping to your door in Cameroon.</p>
+  </section>
+
+  <div class="hw-grid">
+    <div class="step"><span class="sic">🛍️</span><b data-i18n="hw_s1_t">Browse &amp; choose</b><p data-i18n="hw_s1_p">Pick products from the catalogue or send us a photo/link of anything you saw in China.</p></div>
+    <div class="step"><span class="sic">🧺</span><b data-i18n="hw_s2_t">Order your way</b><p data-i18n="hw_s2_p">Add to basket and check out — or just message us directly on WhatsApp.</p></div>
+    <div class="step"><span class="sic">🏭</span><b data-i18n="hw_s3_t">We buy &amp; inspect</b><p data-i18n="hw_s3_p">We purchase at factory price, run QC checks and send you photos before packing.</p></div>
+    <div class="step"><span class="sic">📦</span><b data-i18n="hw_s4_t">Consolidate &amp; ship</b><p data-i18n="hw_s4_p">All your goods are packed into one shipment and shipped door-to-door.</p></div>
+    <div class="step"><span class="sic">🏠</span><b data-i18n="hw_s5_t">Pay &amp; receive</b><p data-i18n="hw_s5_p">Pay by Mobile Money, transfer or on delivery — in USD or FCFA.</p></div>
+  </div>
+
+  <div class="duo">
+    <div class="panel">
+      <h3 data-i18n="hw_ship_t">🚚 Shipping &amp; timing</h3>
+      <p style="color:var(--mut);font-size:.9rem;margin-top:8px" data-i18n="hw_ship_p">Sea freight from Guangzhou to Douala then inland delivery typically takes <b style="color:var(--txt)">4–7 weeks</b>. Small high-value items can go by air (1–2 weeks, quoted separately). Consolidation fee is 12% of goods value, minimum $45 — always shown before you confirm.</p>
+    </div>
+    <div class="panel">
+      <h3 data-i18n="hw_pay_t">💳 Payment options</h3>
+      <p style="color:var(--mut);font-size:.9rem;margin-top:8px" data-i18n="hw_pay_p"><b style="color:var(--txt)">Mobile Money</b> (MTN / Orange) in FCFA on delivery, <b style="color:var(--txt)">bank transfer</b> in USD before shipping, or <b style="color:var(--txt)">cash on delivery</b> in Douala. Every payment is confirmed on WhatsApp with a receipt.</p>
+    </div>
+  </div>
+
+  <section>
+    <div class="sec-head"><h2 data-i18n="faq_h2">Frequently asked <span>questions</span></h2></div>
+    <div class="faq">
+      <details><summary data-i18n="faq1_q">What does MOQ mean?</summary><p data-i18n="faq1_a">MOQ = Minimum Order Quantity — the smallest number of pieces a factory accepts per product. Prices drop as your quantity grows (see the tier table on each product).</p></details>
+      <details><summary data-i18n="faq2_q">Are these really factory prices?</summary><p data-i18n="faq2_a">Yes. We buy directly from vetted factories in Guangzhou wholesale markets, so there is no middleman markup. The tier table shows exactly how the unit price falls as quantity rises.</p></details>
+      <details><summary data-i18n="faq3_q">Can I mix different products in one shipment?</summary><p data-i18n="faq3_a">Absolutely — that is exactly what our consolidation service is for. Put whatever you need in the basket; everything ships together in one consignment for one shipping fee.</p></details>
+      <details><summary data-i18n="faq4_q">How long does delivery take?</summary><p data-i18n="faq4_a">Sea freight Guangzhou → Douala usually takes 4–7 weeks door-to-door depending on volume and customs. Air freight for small urgent parcels takes 1–2 weeks. We confirm the exact timeline with every order on WhatsApp.</p></details>
+      <details><summary data-i18n="faq5_q">What if something arrives damaged?</summary><p data-i18n="faq5_a">Every item passes QC inspection and we photograph your actual goods before packing. If something is still wrong on arrival, message us on WhatsApp with your order reference (TM-XXXXXX) within 48 hours and we will make it right.</p></details>
+      <details><summary data-i18n="faq6_q">I don\u2019t see what I need in the catalogue. Can you source it?</summary><p data-i18n="faq6_a">Yes! The catalogue is only a sample of 6,000+ factories. Send us a photo, video or description on WhatsApp and we will find it, quote you in USD and FCFA, and add it to your next shipment.</p></details>
+    </div>
+  </section>
+
+  <div class="panel cta-panel">
+    <h3 data-i18n="cta_t">Ready to start?</h3>
+    <p style="color:var(--mut);margin:8px auto 18px;max-width:520px" data-i18n="cta_p">Message us now — we reply fast, in English or French.</p>
+    <a class="btn wa big" style="width:auto" id="hw-wa" href="#" target="_blank" rel="noopener" data-i18n="hero_chat">💬 Chat on WhatsApp</a>
+    <br/><a class="btn ghost" style="width:auto;margin-top:14px" href="index.html#shop" data-i18n="hero_browse">🛍️ Browse products</a>
+  </div>
+</main>
+
+<footer class="site" id="site-footer"></footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+renderChrome('how');
+document.getElementById('hw-wa').href = waLink(t('enquiry'));
+</script>
+</body>
+</html>

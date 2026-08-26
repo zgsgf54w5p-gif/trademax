@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>My Orders — TradMax</title>
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+
+<header class="site" id="site-header"></header>
+
+<main class="wrap">
+  <section style="padding-top:30px">
+    <div class="sec-head">
+      <h2 data-i18n="or_h2">My <span>orders</span></h2>
+      <span id="orders-count" style="color:var(--mut);font-size:.9rem">(0)</span>
+    </div>
+    <p class="note" data-i18n="or_note">Orders you sent from this browser are kept here with their reference. Quote the reference (e.g. TM-ABC123) on WhatsApp any time and we will give you a status update instantly.</p>
+  </section>
+
+  <div id="orders-list" style="padding-bottom:60px;display:flex;flex-direction:column;gap:14px"></div>
+
+  <div class="panel" id="orders-empty" style="display:none;text-align:center;padding:60px 22px;margin-bottom:60px">
+    <div style="font-size:3rem">📭</div>
+    <h3 data-i18n="or_none_h">No orders yet.</h3>
+    <p style="color:var(--mut);margin:10px 0 20px" data-i18n="or_none_p">When you send your first order it will appear here with its tracking reference.</p>
+    <a class="btn solid" style="width:auto" href="index.html#shop" data-i18n="btn_start_shop">🛍️ Start shopping</a>
+  </div>
+</main>
+
+<footer class="site" id="site-footer"></footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/orders-page.js"></script>
+</body>
+</html>

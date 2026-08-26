@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TradMax — Wholesale from Guangzhou to Cameroon</title>
+<meta name="description" content="TradMax sources wholesale goods from 6,000+ verified Guangzhou factories and ships door-to-door to Cameroon. Prices in USD & FCFA."/>
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+
+<header class="site" id="site-header"></header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <h1 data-i18n="hero_h1">Wholesale from China to <em>Cameroon</em>, delivered.</h1>
+      <p class="sub" data-i18n="hero_sub">Buy direct from 6,000+ verified Guangzhou factories at true factory prices. We consolidate your goods, handle export paperwork and ship door-to-door — you pay in USD or FCFA and track everything on WhatsApp.</p>
+      <div class="hero-cta">
+        <a class="btn solid big" style="width:auto" href="#shop" data-i18n="hero_browse">🛍️ Browse products</a>
+        <a class="btn ghost big" style="width:auto" href="#" id="hero-wa" data-i18n="hero_chat">💬 Chat on WhatsApp</a>
+      </div>
+    </div>
+    <div class="hero-art"><img src="assets/img/logo.svg" alt="TradMax"/></div>
+  </div>
+</section>
+
+<div class="trust">
+  <div class="wrap">
+    <div class="trust-item"><span class="ic">🏭</span><span><b data-i18n="trust_f_t">6,000+ factories</b><small data-i18n="trust_f_s">Vetted suppliers in every category</small></span></div>
+    <div class="trust-item"><span class="ic">🚢</span><span><b data-i18n="trust_s_t">Door-to-door</b><small data-i18n="trust_s_s">Consolidation + delivery to Cameroon</small></span></div>
+    <div class="trust-item"><span class="ic">💰</span><span><b data-i18n="trust_p_t">USD &amp; FCFA pricing</b><small data-i18n="trust_p_s">Transparent tiered bulk prices</small></span></div>
+    <div class="trust-item"><span class="ic">✅</span><span><b data-i18n="trust_q_t">QC inspection</b><small data-i18n="trust_q_s">We check goods before shipping</small></span></div>
+  </div>
+</div>
+
+<section class="block">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="sec_cats">Shop by <span>category</span></h2></div>
+    <div class="cat-grid" id="cat-grid"></div>
+  </div>
+</section>
+
+<section class="block" id="shop" style="padding-top:10px">
+  <div class="wrap">
+    <div class="sec-head"><h2 data-i18n="sec_all">All <span>products</span></h2><span id="count-note" style="color:var(--mut);font-size:.9rem"></span></div>
+    <div class="toolbar">
+      <div class="search-row">
+        <input type="search" id="q" data-i18n-ph="ph_search" placeholder="🔍 Search phones, fabric, solar panels, tiles…" aria-label="Search products"/>
+        <select id="sort" aria-label="Sort products">
+          <option value="pop" data-i18n="sort_pop">Most popular</option>
+          <option value="new" data-i18n="sort_new">Newest</option>
+          <option value="lo" data-i18n="sort_lo">Price: low → high</option>
+          <option value="hi" data-i18n="sort_hi">Price: high → low</option>
+          <option value="rate" data-i18n="sort_rate">Best rated</option>
+        </select>
+      </div>
+      <div class="chip-row" id="chips"></div>
+    </div>
+    <div class="pgrid" id="grid"></div>
+  </div>
+</section>
+
+<footer class="site" id="site-footer"></footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+<script>
+/* ---------- state ---------- */
+let Q = '', CAT = 'all', SCAN = null, SORT = 'pop';
+
+function init(){
+  renderChrome('home');
+  document.getElementById('hero-wa').href = waLink('Hello ' + BIZ.name + ', I want to source products from China.');
+
+  /* categories */
+  document.getElementById('cat-grid').innerHTML = CATEGORIES.map(c =>
+    '<div class="cat-card" data-cat="' + c.id + '">' +
+      '<span class="cic" style="background:' + catGrad(c.id) + '">' + c.icon + '</span>' +
+      '<span><b>' + c.name + '</b><small>' + c.desc + '</small></span></div>'
+  ).join('');
+
+  /* filter chips + colour scan swatches */
+  const chips = document.getElementById('chips');
+  chips.innerHTML = '<button class="chip on" data-cat="all" type="button">' + t('chip_all') + '</button>' +
+    CATEGORIES.map(c => '<button class="chip" data-cat="' + c.id + '" type="button">' + c.icon + ' ' + c.name + '</button>').join('') +
+    scanSwatches();
+  bindEvents(chips);
+
+  /* category pre-selected from a product page breadcrumb */
+  try {
+    const pre = sessionStorage.getItem('tm_cat');
+    if(pre){ const b = chips.querySelector('.chip[data-cat="' + pre + '"]'); if(b) b.click(); sessionStorage.removeItem('tm_cat'); }
+  } catch(e){}
+
+  draw();
+}
+
+function bindEvents(chips){
+  document.getElementById('q').addEventListener('input', e => { Q = e.target.value.trim().toLowerCase(); draw(); });
+  document.getElementById('sort').addEventListener('change', e => { SORT = e.target.value; draw(); });
+  chips.addEventListener('click', e => {
+    const chip = e.target.closest('.chip');
+    if(chip){
+      CAT = chip.dataset.cat; SCAN = null;
+      chips.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', x === chip));
+      chips.querySelectorAll('.sw').forEach(x => x.classList.remove('on'));
+      if(CAT !== 'all') document.getElementById('shop').scrollIntoView({ behavior:'smooth' });
+      draw(); return;
+    }
+    const sw = e.target.closest('.sw');
+    if(sw){
+      SCAN = (SCAN === sw.dataset.c) ? null : sw.dataset.c;
+      chips.querySelectorAll('.sw').forEach(x => x.classList.toggle('on', x === sw && !!SCAN));
+      chips.querySelectorAll('.chip').forEach(x => x.classList.toggle('on', !SCAN && x.dataset.cat === CAT));
+      draw();
+    }
+  });
+  document.getElementById('cat-grid').addEventListener('click', e => {
+    const card = e.target.closest('.cat-card'); if(!card) return;
+    const btn = chips.querySelector('.chip[data-cat="' + card.dataset.cat + '"]');
+    if(btn) btn.click();
+  });
+}
+
+function filtered(){
+  let list = allProducts().filter(p => {
+    if(CAT !== 'all' && p.cat !== CAT) return false;
+    if(SCAN && !matchesScan(p, SCAN)) return false;
+    if(Q){
+      const hay = (p.name + ' ' + p.tags.join(' ') + ' ' + catName(p.cat) + ' ' + (p.supplier || '')).toLowerCase();
+      if(!hay.includes(Q)) return false;
+    }
+    return true;
+  });
+  const base = p => tierPrice(p, p.moq);
+  if(SORT === 'pop') list.sort((a,b) => (b.sold||0) - (a.sold||0));
+  else if(SORT === 'new') list.sort((a,b) => (b.isNew?1:0) - (a.isNew?1:0));
+  else if(SORT === 'lo') list.sort((a,b) => base(a) - base(b));
+  else if(SORT === 'hi') list.sort((a,b) => base(b) - base(a));
+  else if(SORT === 'rate') list.sort((a,b) => (b.rating||0) - (a.rating||0));
+  return list;
+}
+
+function draw(){
+  const list = filtered();
+  document.getElementById('grid').innerHTML = list.length
+    ? list.map(productCard).join('')
+    : '<p class="nores">' + t('nores') + '</p>';
+  const bits = [];
+  bits.push(list.length + (list.length === 1 ? t('cnt_prod') : t('cnt_prods')));
+  if(SCAN) bits.push(t('cnt_colour') + SCAN);
+  if(Q) bits.push('\u201C' + Q + '\u201D');
+  document.getElementById('count-note').textContent = bits.join(' · ');
+}
+
+init();
+</script>
+</body>
+</html>

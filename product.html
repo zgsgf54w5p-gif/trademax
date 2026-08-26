@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Product — TradMax</title>
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml"/>
+<link rel="stylesheet" href="assets/css/style.css"/>
+</head>
+<body>
+
+<header class="site" id="site-header"></header>
+
+<main class="wrap">
+  <nav class="crumbs" id="crumbs"></nav>
+  <div class="pd" id="pd">
+    <div class="pd-thumb" id="pd-thumb"><span class="pemoji">📦</span></div>
+    <div>
+      <h1 id="pd-name" data-i18n="loading">Loading…</h1>
+      <p class="psup" id="pd-sup"></p>
+      <p class="prate" id="pd-rate"></p>
+      <p class="pd-desc" id="pd-desc"></p>
+
+      <table class="tiers-table">
+        <thead><tr><th data-i18n="th_qty">Order qty</th><th data-i18n="th_unit">Unit price (USD)</th><th data-i18n="th_fcfa">≈ FCFA/unit</th></tr></thead>
+        <tbody id="tiers-body"></tbody>
+      </table>
+
+      <div class="qty-big">
+        <button type="button" onclick="bump(-1)">−</button>
+        <input type="number" id="qty" min="1" value="1" aria-label="Quantity"/>
+        <button type="button" onclick="bump(1)">+</button>
+        <small style="color:var(--mut)" id="moq-note"></small>
+      </div>
+
+      <div class="calc">
+        <div class="calc-row"><span data-i18n="calc_unit">Unit price at this quantity</span><b id="c-unit">—</b></div>
+        <div class="calc-row"><span data-i18n="tot_goods">Goods subtotal</span><b id="c-goods">—</b></div>
+        <div class="calc-row"><span data-i18n="tot_ship">Door-to-door shipping (est.)</span><b id="c-ship">—</b></div>
+        <div class="calc-row grand"><span data-i18n="tot_total">Total</span><b id="c-total">—</b></div>
+      </div>
+
+      <div class="pd-cta">
+        <button class="btn solid big" style="width:auto" type="button" onclick="addNow()" data-i18n="btn_add_basket">🧺 Add to basket</button>
+        <a class="btn wa big" style="width:auto" id="pd-wa" href="#" target="_blank" rel="noopener" data-i18n="btn_order_wa">💬 Order this on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+
+  <section class="block" style="padding-top:0">
+    <div class="sec-head"><h2 data-i18n="also_like">You may also <span>like</span></h2><a href="index.html#shop" data-i18n="view_all">View all →</a></div>
+    <div class="pgrid" id="related"></div>
+  </section>
+</main>
+
+<footer class="site" id="site-footer"></footer>
+
+<script src="assets/js/i18n.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/product-page.js"></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420">
+  <defs>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8f9fb"/><stop offset="0.45" stop-color="#b9bec7"/>
+      <stop offset="0.55" stop-color="#878e99"/><stop offset="1" stop-color="#e2e6ec"/>
+    </linearGradient>
+    <linearGradient id="silver2" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#eef0f4"/><stop offset="1" stop-color="#9aa1ac"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3a3f47"/><stop offset="1" stop-color="#101215"/>
+    </linearGradient>
+  </defs>
+  <circle cx="210" cy="210" r="196" fill="#f4efe6"/>
+  <circle cx="210" cy="210" r="186" fill="none" stroke="url(#ring)" stroke-width="13"/>
+  <path d="M138 128 L138 296 L282 296 L282 128 L236 128 L210 172 L184 128 Z" fill="url(#silver)" stroke="#5f6672" stroke-width="3" stroke-linejoin="round"/>
+  <path d="M162 118 C162 84 186 62 210 62 C234 62 258 84 258 118" fill="none" stroke="url(#silver2)" stroke-width="11" stroke-linecap="round"/>
+  <circle cx="184" cy="124" r="7" fill="#565d68"/><circle cx="236" cy="124" r="7" fill="#565d68"/>
+  <rect x="150" y="308" width="120" height="12" rx="6" fill="url(#silver)" stroke="#5f6672" stroke-width="2"/>
+  <circle cx="172" cy="334" r="12" fill="url(#silver2)" stroke="#5f6672" stroke-width="3"/>
+  <circle cx="248" cy="334" r="12" fill="url(#silver2)" stroke="#5f6672" stroke-width="3"/>
+  <text x="210" y="384" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="40" font-weight="800" fill="#3a3f47">TradMax</text>
+</svg>
