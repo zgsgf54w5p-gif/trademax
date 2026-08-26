@@ -8,4 +8,5 @@ Thumbs.db
 
 # local artifacts
 test-out.txt
+git-out.txt
 *.log
